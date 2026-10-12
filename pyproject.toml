@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "balance-control-lab"
+version = "0.1.0"
+description = "机器人动力学建模 -> 状态估计 -> 平衡控制 -> 关节轨迹规划 -> 底层驱动抽象 的零依赖最小实现(纯仿真)"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "The balance-control-lab Authors" }]
+keywords = [
+    "robotics",
+    "control",
+    "lqr",
+    "lagrangian-dynamics",
+    "trajectory-planning",
+    "state-estimation",
+    "simulation",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Software Development :: Embedded Systems",
+]
+# 硬性约束: 运行时**零第三方依赖**。矩阵运算、DARE、矩阵指数、特征值全部自己实现。
+dependencies = []
+
+[project.optional-dependencies]
+# pytest 只用于测试, 不是运行时依赖。
+dev = ["pytest>=7"]
+
+[project.scripts]
+bcl = "bcl.cli:main"
+
+[tool.setuptools]
+packages = ["bcl"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
