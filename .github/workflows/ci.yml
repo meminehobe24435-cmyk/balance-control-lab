@@ -2,13 +2,15 @@ name: CI
 
 on:
   push:
-    branches: ["**"]
+    branches: [main, master]
   pull_request:
+  workflow_dispatch:
 
 # Windows 控制台默认用 GBK 代码页, 而本项目所有文案是 UTF-8。不设这个变量,
-# 打印含 "Astrom"/中文的输出时可能抛 UnicodeEncodeError。
+# 打印含中文的输出时可能抛 UnicodeEncodeError。
 env:
   PYTHONIOENCODING: utf-8
+  PYTHONUTF8: "1"
 
 jobs:
   test:
